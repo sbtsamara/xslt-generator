@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.Properties;
 import java.util.Scanner;
 
@@ -11,7 +12,7 @@ import java.util.Scanner;
 public class Generator {
 
     public static String[] readLine(){
-        Scanner scanner = new Scanner(System.in, "utf-8"); //"CP1251",
+        Scanner scanner = new Scanner(System.in, "CP1251"); //"CP1251","utf-8"
         System.out.print("Enter the operation: ");
         String text = scanner.nextLine();
         String[] cop = text.split(",");
@@ -47,12 +48,13 @@ public class Generator {
 
         try {
             fileInputStream = new FileInputStream(PATH_TO_PROPERTIES);
+            Charset.forName("UTF-8");
             prop.load(fileInputStream);
             String op = cop[0];
-            System.out.println(op);
+            
             text = prop.getProperty(op);
-            System.out.println(text);
 
+            
         } catch (IOException e) {
             System.out.println("Ошибка в программе: файл " + PATH_TO_PROPERTIES + " не обнаружено");
             e.printStackTrace();
