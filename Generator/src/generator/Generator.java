@@ -37,7 +37,7 @@ public class Generator {
         }
         catch(IOException ex){  System.out.println(ex.getMessage());}
     }
-    public static final String PATH_TO_PROPERTIES = "src/main/resources/config.properties";
+    public static final String PATH_TO_PROPERTIES = "src/resources/config.properties";
 
     public static String choice(String...cop){
         FileInputStream fileInputStream;
@@ -87,7 +87,7 @@ public class Generator {
                 break;
             case "ИМПОРТ_ШАБЛОНА": importTemplete (brackets(cop[1]));
                 break;
-
+        
             default: System.out.println("Invalid command");
                 break;
         }
