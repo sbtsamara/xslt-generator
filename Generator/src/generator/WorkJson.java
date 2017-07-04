@@ -2,6 +2,7 @@
 package generator;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,12 +19,14 @@ public class WorkJson {
     public static String parseJson(String[] attribute) {
         JSONParser parser = new JSONParser();
         String operation = null;
+        ArrayList[] operations = null;
         try {
             JSONObject object = (JSONObject) parser.parse(new FileReader(FILENAME));            
             operation = (String) object.get(attribute[0]);
             
             for(int i=1; i < attribute.length; i++){
-                operation = operation.replaceFirst("\\?",brackets(attribute[i]));          
+                operation = operation.replaceFirst("\\?",brackets(attribute[i]));
+                
             }
             
            
