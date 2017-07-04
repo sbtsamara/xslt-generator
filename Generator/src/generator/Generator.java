@@ -15,39 +15,39 @@ public class Generator {
     public static void General(){
  
        String[] cop = readLine();
-       parseJson(cop);
+       String result = parseJson(cop);
        // String text = WorkWithJson(cop);
-       // createXMLFile(text);
+       createXMLFile(result);
     }
+}
 
-    public static final String PATH_TO_PROPERTIES = "src/resources/config.properties";
+   // public static final String PATH_TO_PROPERTIES = "src/resources/config.properties";
 
-    public static String WorkWithJson(String...cop){
-        
-        
-        
-        
-        FileInputStream fileInputStream;
-
-        Properties prop = new Properties();
-        String text=null;
-
-        try {
-            fileInputStream = new FileInputStream(PATH_TO_PROPERTIES);
-            Charset.forName("UTF-8");
-            prop.load(fileInputStream);
-            
-            String op = cop[0];
-            
-            text = prop.getProperty(op);
-            
-            
-        } catch (IOException e) {
-            System.out.println("Ошибка в программе: файл " + PATH_TO_PROPERTIES + " не обнаружено");
-            e.printStackTrace();
-        }
-        return text;
-
+    /*public static String WorkWithJson(String...cop){
+    
+    
+    
+    
+    FileInputStream fileInputStream;
+    
+    Properties prop = new Properties();
+    String text=null;
+    
+    try {
+    fileInputStream = new FileInputStream(PATH_TO_PROPERTIES);
+    Charset.forName("UTF-8");
+    prop.load(fileInputStream);
+    
+    String op = cop[0];
+    
+    text = prop.getProperty(op);
+    
+    
+    } catch (IOException e) {
+    System.out.println("Ошибка в программе: файл " + PATH_TO_PROPERTIES + " не обнаружено");
+    e.printStackTrace();
+    }
+    return text;*/
 /*
         switch(cop[0]){
             case "ЦИКЛ":
@@ -79,100 +79,98 @@ public class Generator {
             default: System.out.println("Invalid command");
                 break;
         }
+    }
 */
-    }
+    
 
     
     
-      private static String brackets(String bracket){
-        String param = bracket.substring(1,bracket.length()-1);
-        return param;
-    }
-      
+    
+    /*
     private static String loop(String...value){
-        String text = ""
-                + "<xsl:for-each select = “"+value[0]+"” > \r\n" +
-                ""+value[1]+"\r\n" +
-                "</xsl:for-each>";
-        return text;
+    String text = ""
+    + "<xsl:for-each select = “"+value[0]+"” > \r\n" +
+    ""+value[1]+"\r\n" +
+    "</xsl:for-each>";
+    return text;
     }
-
+    
     private static void choose(String...value){
-        System.out.println("\n"
-                + "<xsl:choose>\n" +
-                "                <xsl:when test= “"+value[0]+"” >\n" +
-                "                   “"+value[1]+"”\n" +
-                "                </xsl:when>\n" +
-                "                <xsl:when test=“"+value[2]+"”>\n" +
-                "                   “"+value[3]+"”\n" +
-                "                </xsl:when>\n" +
-                "                <xsl:otherwise>\n" +
-                "                    “"+value[4]+"”\n" +
-                "                </xsl:otherwise>\n" +
-                "            </xsl:choose>");
+    System.out.println("\n"
+    + "<xsl:choose>\n" +
+    "                <xsl:when test= “"+value[0]+"” >\n" +
+    "                   “"+value[1]+"”\n" +
+    "                </xsl:when>\n" +
+    "                <xsl:when test=“"+value[2]+"”>\n" +
+    "                   “"+value[3]+"”\n" +
+    "                </xsl:when>\n" +
+    "                <xsl:otherwise>\n" +
+    "                    “"+value[4]+"”\n" +
+    "                </xsl:otherwise>\n" +
+    "            </xsl:choose>");
     }
-
+    
     private static void format(String...value){
-        System.out.println("<xsl:decimal-format\n" +
-                "    name = “"+value[0]+"” \n" +
-                "    decimal-separator = “"+value[1]+"”\n" +
-                " />");
+    System.out.println("<xsl:decimal-format\n" +
+    "    name = “"+value[0]+"” \n" +
+    "    decimal-separator = “"+value[1]+"”\n" +
+    " />");
     }
     private static void output(String...value){
-        System.out.println("<xsl:output\n" +
-                "    method = “"+value[0]+"”\n" +
-                "    version = “"+value[1]+"”\n" +
-                "    encoding = “"+value[2]+"”\n" +
-                " />");
+    System.out.println("<xsl:output\n" +
+    "    method = “"+value[0]+"”\n" +
+    "    version = “"+value[1]+"”\n" +
+    "    encoding = “"+value[2]+"”\n" +
+    " />");
     }
-
+    
     private static void valueOf(String...value){
-        System.out.println("<xsl:value-of select=“"+value[0]+"”/>");
+    System.out.println("<xsl:value-of select=“"+value[0]+"”/>");
     }
-
+    
     private static void sort(String...value){
-        System.out.println("<xsl:sort\n" +
-                "    	select = “"+value[0]+"”\n" +
-                "    	order = “"+value[1]+"”\n" +
-                "    	/>");
+    System.out.println("<xsl:sort\n" +
+    "    	select = “"+value[0]+"”\n" +
+    "    	order = “"+value[1]+"”\n" +
+    "    	/>");
     }
-
+    
     private static void condition(String...value){
-        System.out.println("<xsl:if\n" +
-                "    test = “"+value[0]+"”>\n" +
-                "    “"+value[1]+"”\n" +
-                "</xsl:if>");
+    System.out.println("<xsl:if\n" +
+    "    test = “"+value[0]+"”>\n" +
+    "    “"+value[1]+"”\n" +
+    "</xsl:if>");
     }
-
+    
     private static void variable(String...value){
-        System.out.println("<xsl:variable\n" +
-                "    name = “"+value[0]+"”\n" +
-                "    select = “"+value[1]+"”>\n" +
-                "</xsl:variable>");
+    System.out.println("<xsl:variable\n" +
+    "    name = “"+value[0]+"”\n" +
+    "    select = “"+value[1]+"”>\n" +
+    "</xsl:variable>");
     }
-
+    
     private static void template(String...value){
-        System.out.println("<xsl:template\n" +
-                "    match = “"+value[0]+"”\n" +
-                "    name = “"+value[1]+"”\n" +
-                "    “"+value[2]+"”\n" +
-                "</xsl:template>");
+    System.out.println("<xsl:template\n" +
+    "    match = “"+value[0]+"”\n" +
+    "    name = “"+value[1]+"”\n" +
+    "    “"+value[2]+"”\n" +
+    "</xsl:template>");
     }
-
+    
     private static void attribute(String...value){
-        System.out.println("<xsl:attribute\n" +
-                "    name = “"+value[0]+"”>\n" +
-                "</xsl:attribute>");
+    System.out.println("<xsl:attribute\n" +
+    "    name = “"+value[0]+"”>\n" +
+    "</xsl:attribute>");
     }
-
+    
     private static void callTemplate(String...value){
-        System.out.println("<xsl:apply-templates\n" +
-                "    select = “"+value[0]+"”\n" +
-                "</xsl:apply-templates>");
+    System.out.println("<xsl:apply-templates\n" +
+    "    select = “"+value[0]+"”\n" +
+    "</xsl:apply-templates>");
     }
     private static void importTemplete(String...value){
-        System.out.println("<xsl:import href=“"+value[0]+"”/>\n" +
-                "     <xsl:apply-imports/>");
+    System.out.println("<xsl:import href=“"+value[0]+"”/>\n" +
+    "     <xsl:apply-imports/>");
     }
-}
-
+    }
+    */
