@@ -6,18 +6,27 @@ import java.nio.charset.Charset;
 import java.util.Properties;
 import static generator.Creator.createXMLFile;
 import static generator.Creator.readLine;
+import static generator.WorkJson.parseJson;
+import org.json.simple.JSONObject;
+
 
 public class Generator {
     
     public static void General(){
-        String[] cop = readLine();
-        String text = WorkWithJson(cop);
-        createXMLFile(text);
+ 
+       String[] cop = readLine();
+       parseJson(cop);
+       // String text = WorkWithJson(cop);
+       // createXMLFile(text);
     }
 
     public static final String PATH_TO_PROPERTIES = "src/resources/config.properties";
 
     public static String WorkWithJson(String...cop){
+        
+        
+        
+        
         FileInputStream fileInputStream;
 
         Properties prop = new Properties();
