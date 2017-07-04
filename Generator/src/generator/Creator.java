@@ -18,7 +18,7 @@ public class Creator {
      public static void createXMLFile(String text2){
 
         File dir = new File("C://Users//usersbt//Downloads//File.xsl");
-        File file = new File(dir, "File.xsl");
+       // File file = new File(dir, "File.xsl");
         try(FileWriter writer = new FileWriter(dir, false))
         {
             String text = "<xsl:stylesheet version=\"1.0\" xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\"> \r\n";

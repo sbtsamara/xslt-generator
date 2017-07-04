@@ -15,21 +15,28 @@ public class WorkJson {
    
     private static final String FILENAME = "C:\\Users\\usersbt\\Documents\\NetBeansProjects\\xslt-generator\\Generator\\src\\generator\\Json.json";
      
-    public static void parseJson(String[] attribute) {
+    public static String parseJson(String[] attribute) {
         JSONParser parser = new JSONParser();
+        String operation = null;
         try {
             JSONObject object = (JSONObject) parser.parse(new FileReader(FILENAME));            
-            String operation = (String) object.get(attribute[0]);
+            operation = (String) object.get(attribute[0]);
             
             for(int i=1; i < attribute.length; i++){
-                operation = operation.replaceFirst("\\?",attribute[i]);          
+                operation = operation.replaceFirst("\\?",brackets(attribute[i]));          
             }
             
-            System.out.println(operation);
+           
  
         } catch (IOException | ParseException ex) {
             Logger.getLogger(WorkJson.class.getName()).log(Level.SEVERE, null, ex);
         }
+         return operation;
+    }
+
+    private static String brackets(String bracket){
+        String param = bracket.substring(1,bracket.length()-1);
+        return param;
     }
 }
 

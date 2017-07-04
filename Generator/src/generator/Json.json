@@ -1,11 +1,54 @@
-{ 
-"ЦИКЛ": "<xsl:for-each select = “?” > ? </xsl:for-each>"
-
-
-
+{
+"ЦИКЛ": "<xsl:for-each select = “?” >
+ ? 
+</xsl:for-each>",
+"РАЗДЕЛИТЕЛЬ": "<xsl:decimal-format
+    name = “?”
+    decimal-separator = “?”
+ />",
+"ВЫВОД": "<xsl:output
+    method = “?”
+    version = “?”
+    encoding = “?”
+ />",
+"ИЗВЛЕЧЕНИЕ": "<xsl:value-of select=“?”/>",
+"СОРТИРОВКА": "<xsl:sort
+     select = “?”
+     order = “?”
+     />",
+"УСЛОВИЕ": "<xsl:if
+    test = “?”>
+    ? 
+    </xsl:if>",
+"ВЫБОР": "<xsl:choose>
+                <xsl:when test=“?”>
+                   ? 
+                </xsl:when>
+                <xsl:when test=“?”>
+                   ?
+                </xsl:when>
+                <xsl:otherwise>
+                   ?
+                </xsl:otherwise>
+         </xsl:choose>",
+"ПЕРЕМЕННАЯ": "<xsl:variable
+                    name = “?”
+                    select = “?”>
+                </xsl:variable>",
+"ШАБЛОН": "<xsl:template
+            match = “?”
+            name = “?”
+            ? 
+        </xsl:template>",
+"АТРИБУТ": "<xsl:attribute
+            name = “?”>
+        </xsl:attribute>",
+"ВЫЗОВ_ШАБЛОНА": "<xsl:apply-templates
+                    select = “?”
+                </xsl:apply-templates>",
+"ИМПОРТ_ШАБЛОНА": "<xsl:import href=“?”/>
+        <xsl:apply-imports/>"
 
 }
-
-
 
 
