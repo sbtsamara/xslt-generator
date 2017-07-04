@@ -18,21 +18,15 @@ public class WorkJson {
     public static void parseJson(String[] attribute) {
         JSONParser parser = new JSONParser();
         try {
-            JSONObject object = (JSONObject) parser.parse(new FileReader(FILENAME));
-            
+            JSONObject object = (JSONObject) parser.parse(new FileReader(FILENAME));            
             String operation = (String) object.get(attribute[0]);
-            String outStr = null;
-            String [] attr = operation.split("?");
-            for(String i:attr){
-                for(String j:attribute){
-                    outStr+
-                }
             
+            for(int i=1; i < attribute.length; i++){
+                operation = operation.replaceFirst("\\?",attribute[i]);          
             }
-            System.out.println(outStr);
             
-            
-            
+            System.out.println(operation);
+ 
         } catch (IOException | ParseException ex) {
             Logger.getLogger(WorkJson.class.getName()).log(Level.SEVERE, null, ex);
         }
