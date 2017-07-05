@@ -9,15 +9,13 @@ import static generator.Creator.readLine;
 import static generator.WorkJson.parseJson;
 import org.json.simple.JSONObject;
 
-
 public class Generator {
     
     public static void General(){
- 
        String[] cop = readLine();
        String result = parseJson(cop);
-       // String text = WorkWithJson(cop);
        createXMLFile(result);
+      // String text = WorkWithJson(cop);
     }
 }
 
