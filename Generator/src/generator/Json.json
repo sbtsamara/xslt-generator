@@ -1,4 +1,4 @@
-{
+{ 
 "ЦИКЛ": "<xsl:for-each select = “?” > \r
     ? \r
 </xsl:for-each>",
@@ -47,8 +47,8 @@
                     select = “?” \r 
                 </xsl:apply-templates>",
 "ИМПОРТ_ШАБЛОНА": "<xsl:import href=“?”/> \r
-        <xsl:apply-imports/>"
+        <xsl:apply-imports/>",
+
+"РАЗМЕР": "last()"	
 
 }
-
-

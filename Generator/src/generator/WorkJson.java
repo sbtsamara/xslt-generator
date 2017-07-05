@@ -17,13 +17,19 @@ public class WorkJson {
     public static String parseJson(String[] attribute) {
         JSONParser parser = new JSONParser();
         String operation = null;
+        String function = null;
         ArrayList[] operations = null;
         try {
             JSONObject object = (JSONObject) parser.parse(new FileReader(FILENAME));            
-            operation = (String) object.get(attribute[0]);            
-            for(int i=1; i < attribute.length; i++){
+            operation = (String) object.get(attribute[0]); 
+            function = (String) object.get(brackets(attribute[1]));
+            if(function == null){
+                for(int i=1; i < attribute.length; i++){
                 operation = operation.replaceFirst("\\?",brackets(attribute[i]));               
-            }
+                }
+                  
+            }else operation = operation.replaceFirst("\\?",function);
+            
             
         } catch (IOException | ParseException ex) {
             Logger.getLogger(WorkJson.class.getName()).log(Level.SEVERE, null, ex);
