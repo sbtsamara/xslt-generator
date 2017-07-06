@@ -17,20 +17,24 @@ public class WorkJson {
     public static String parseJson(String[] attribute) {
         JSONParser parser = new JSONParser();
         String operation = null;
-        String function = null;
+        String functionATT1 = null;
+        String functionATT2 = null;
         String operations = null;
         try {
             JSONObject object = (JSONObject) parser.parse(new FileReader(FILENAME));            
             operation = (String) object.get(attribute[0]); 
-            function = (String) object.get(brackets(attribute[1]));
-            
-            if(function == null){
+            functionATT1 = (String) object.get(brackets(attribute[1]));
+            //functionATT2 = (String) object.get(brackets(attribute[2]));
+            if(functionATT1 == null){
                 for(int i=1; i < attribute.length; i++){
                 operation = operation.replaceFirst("\\?",brackets(attribute[i]));               
                 }
                   
             }else {
-                operation = operation.replaceFirst("\\?",function);
+                operation = operation.replaceFirst("\\?",functionATT1);
+                //if(functionATT2 != null){
+                //operation = operation.replaceFirst("\\?",functionATT2);
+                //}
             }
             
         } catch (IOException | ParseException ex) {
