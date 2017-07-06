@@ -24,18 +24,16 @@ public class WorkJson {
             JSONObject object = (JSONObject) parser.parse(new FileReader(FILENAME));            
             operation = (String) object.get(attribute[0]); 
             functionATT1 = (String) object.get(brackets(attribute[1]));
-            //functionATT2 = (String) object.get(brackets(attribute[2]));
+            functionATT2 = (String) object.get(brackets(attribute[2]));
             if(functionATT1 == null){
                 for(int i=1; i < attribute.length; i++){
                 operation = operation.replaceFirst("\\?",brackets(attribute[i]));               
-                }
-                  
-            }else {
-                operation = operation.replaceFirst("\\?",functionATT1);
-                //if(functionATT2 != null){
-                //operation = operation.replaceFirst("\\?",functionATT2);
-                //}
-            }
+                }    
+            }else {operation = operation.replaceFirst("\\?",functionATT1);}     
+            
+            if(functionATT2 != null){
+                operation = operation.replaceFirst("\\?",functionATT2);
+                } else{operation = operation.replaceFirst("\\?",brackets(attribute[2]));}
             
         } catch (IOException | ParseException ex) {
             Logger.getLogger(WorkJson.class.getName()).log(Level.SEVERE, null, ex);
