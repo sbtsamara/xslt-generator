@@ -2,24 +2,30 @@
 "ЦИКЛ": "<xsl:for-each select = “?” > \r
     ? \r
 </xsl:for-each>",
+
 "РАЗДЕЛИТЕЛЬ": "<xsl:decimal-format \r
     name = “?” \r
     decimal-separator = “?” \r
  />",
+
 "ВЫВОД": "<xsl:output \r
     method = “?” \r
     version = “?” \r
     encoding = “?” \r
  />",
+
 "ИЗВЛЕЧЕНИЕ": "<xsl:value-of select=“?”/>",
+
 "СОРТИРОВКА": "<xsl:sort \r
      select = “?” \r
      order = “?” \r
      />",
+
 "УСЛОВИЕ": "<xsl:if \r
     test = “?”> \r
     ? \r 
     </xsl:if>",
+
 "ВЫБОР": "<xsl:choose>
                 <xsl:when test=“?”> \r
                    ? \r
@@ -31,50 +37,78 @@
                    ? \r
                 </xsl:otherwise> \r
          </xsl:choose>",
+
 "ПЕРЕМЕННАЯ": "<xsl:variable \r
                     name = “?” \r
                     select = “?”> \r
                 </xsl:variable>",
+
 "ШАБЛОН": "<xsl:template match = “?” \r
             name = “?” \r
             ? \r
         </xsl:template>",
+
 "АТРИБУТ": "<xsl:attribute \r
             name = “?”> \r
         </xsl:attribute>",
+
 "ВЫЗОВ_ШАБЛОНА": "<xsl:apply-templates \r
                     select = “?” \r 
                 </xsl:apply-templates>",
+
 "ИМПОРТ_ШАБЛОНА": "<xsl:import href=“?”/> \r
         <xsl:apply-imports/>",
 
 "РАЗМЕР": "last()",
+
 "СОЗДАНИЕ_ИДЕНТИФИКАТОРА ": "generate-id() :",	
+
 "ЧИСЛ_КОНВЕРТЕР": "number()",
+
 "ВЕРНУТЬ_МНОЖЕСТВО": " current()",
+
 "СУММА": "sum()",
+
 "КОПИРОВАТЬ_АТРИБУТ": "<xsl:copy use-attribute-sets=“ ”> 
           <xsl:value-of select=“ ”/> 
      </xsl:copy",
+
 "ЛОГ_ЗНАЧ": "boolean()",
+
 "КОПИРОВАТЬ": "<xsl:copy select=“ ”/>
      <xsl:copy/>",
 "НЕ": "not()",
+
 "КОПИРОВАТЬ_ВСЕ": "<xsl:copy-of select=“ ”/>
     <xsl:copy/>",
+
 "ЯЗЫК": "lang()",
+
 "ТЕКСТ": "<xsl:text> </xsl:text>",
-"КОНКАТ": "concat()",	
+
+"КОНКАТ": "concat()",
+	
 "ИМЯ": "name()",
+
 "ИМЯ_АТРИБУТА": "local-name()",
+
 "ИМЯ_ПРОСТР": "namespace-uri()",
+
 "СРАВН_НАЧАЛ": "starts-with()",
+
 "ИДЕНТИФИКАТОР": "id()",
+
 "ВХОЖДЕНИЕ_СТР": "contains()",
+
 "КОЛИЧЕСТВО_УЗЛОВ": "count()",
+
 "ДЛИНА_СТРОКИ": "string-length()",
+
 "ПОЗИЦИЯ": "position()",
+
 "РАЗМЕР": "last()",
-"ЗАМЕНА": "translate()",	
+
+"ЗАМЕНА": "translate()",
+	
 "НОРМАЛИЗ_ПРОБЕЛОВ": "normalize-space()"
 }

@@ -10,12 +10,10 @@ import static javafx.application.Platform.exit;
 import javax.swing.JFileChooser;
 
 public class MainForm extends javax.swing.JFrame {
-
     public MainForm() {
         initComponents();
     }
-
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -130,20 +128,14 @@ public class MainForm extends javax.swing.JFrame {
                 writer.write(text);
                 writer.write(outputString);
                 writer.flush();
-            }
-            catch(IOException ex){  System.out.println(ex.getMessage());}
-    
+            } catch(IOException ex){  System.out.println(ex.getMessage());}
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         dispose();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
     public static String inputString;
-    public static String outputString;
-
-   
-
-    
+    public static String outputString;   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button button1;
     private javax.swing.JTextArea inputField;
