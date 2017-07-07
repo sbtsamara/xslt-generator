@@ -4,7 +4,7 @@ import windows.*;
 
 public class Creator {  
     public static String[] readLine(){
-        String text = MainForm.inputString;
+        String text = Form.inputString;
         String[] cop = text.split(",");
         return cop;
     }

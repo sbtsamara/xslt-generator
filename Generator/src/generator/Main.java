@@ -1,12 +1,13 @@
 package generator;
-import static generator.Generator.General;
-import windows.MainForm;
+
+import windows.Form;
+import static java.awt.EventQueue.invokeLater;
 
 public class Main {
     public static void main(String[] args) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        invokeLater(new Runnable() {
             public void run() {
-                MainForm frame= new MainForm() ;
+                Form frame= new Form() ;
                 frame.setVisible(true);
                 frame.setLocationRelativeTo(null);
             }
