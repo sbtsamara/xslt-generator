@@ -1,12 +1,8 @@
 package windows;
 
 import static generator.Generator.General;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
-import static javafx.application.Platform.exit;
 import javax.swing.JFileChooser;
 
 public class MainForm extends javax.swing.JFrame {
