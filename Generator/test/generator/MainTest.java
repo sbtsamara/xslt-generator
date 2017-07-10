@@ -1,15 +1,15 @@
+package generator;
 
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import static org.junit.Assert.*;
 
-
-
-public class JUnitTest {
+public class MainTest {
     
-    public JUnitTest() {
+    public MainTest() {
     }
     
     @BeforeClass
@@ -28,12 +28,13 @@ public class JUnitTest {
     public void tearDown() {
     }
 
-    // TODO add test methods here.
-     @Test   
-    public static void Emptycop(String[] cop){
-
-        }
+    @Test
+    public void testMain() {
+        System.out.println("main");
+        String[] args = null;
+        Main.main(args);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
     
 }
-    
-
