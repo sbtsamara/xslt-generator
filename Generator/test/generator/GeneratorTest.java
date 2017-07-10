@@ -37,29 +37,22 @@ public class GeneratorTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of General method, of class Generator.
-     */
-    @Test
-    public void testGeneral() {
-        System.out.println("General");
-        Generator.General();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+//    @Test
+//    public void testGeneral() {
+//        System.out.println("General");
+//        Generator.General();
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
+//    }
 
-    /**
-     * Test of readLine method, of class Generator.
-     */
+
     @Test
     public void testReadLine() {
         System.out.println("readLine");
-        String text = "";
-        String[] expResult = null;
+        String text = "code,code";
+        String[] expResult = {"code","code"};
         String[] result = Generator.readLine(text);
         assertArrayEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }

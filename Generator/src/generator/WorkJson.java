@@ -50,7 +50,7 @@ public class WorkJson {
         return operation;
     }
     
-    private static String brackets(String bracket){
+    public static String brackets(String bracket){
         String param = bracket.substring(1,bracket.length()-1);
         return param;
     }
