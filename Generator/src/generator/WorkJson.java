@@ -22,6 +22,11 @@ public class WorkJson {
             JSONObject object = (JSONObject) parser.parse(new FileReader(FILENAME));            
             operation = (String) object.get(attribute[0]);
             
+            if (operation==null){
+                operation = "Операция не найдена. Повторите попытку.";
+                return operation;
+            }
+            
             if(attribute.length == 1){
                 return operation;
             }
@@ -29,19 +34,17 @@ public class WorkJson {
             functionATT2 = (String) object.get(brackets(attribute[2]));
           
             if(functionATT1 == null){
-                for(int i=1; i < attribute.length; i++){
-                operation = operation.replaceFirst("\\?",brackets(attribute[i]));               
-                }    
+                operation = operation.replaceFirst("\\?",brackets(attribute[1]));               
             }
             else {
                 operation = operation.replaceFirst("\\?",functionATT1);
                 }   
             
-            if(functionATT2 != null){
-                operation = operation.replaceFirst("\\?",functionATT2);
+            if(functionATT2 == null){
+                operation = operation.replaceFirst("\\?",brackets(attribute[2]));
             }
             else{
-                operation = operation.replaceFirst("\\?",brackets(attribute[2]));
+                operation = operation.replaceFirst("\\?",functionATT2);  
             }  
             
         }catch (IOException | ParseException ex) {
