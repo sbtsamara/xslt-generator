@@ -17,10 +17,12 @@ import static javax.swing.GroupLayout.PREFERRED_SIZE;
 import static javax.swing.LayoutStyle.ComponentPlacement.RELATED;
 
 public class Form extends JFrame {
-    
+    private String text = "<xsl:stylesheet version=\"1.0\" xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\"> \r\n\n";
     public JTextArea inputField = new JTextArea();
     public JTextArea outputField = new JTextArea();
-
+    public static String inputString;
+    public static String outputString; 
+    
     public Form() {
         initComponents();
     } 
@@ -28,13 +30,11 @@ public class Form extends JFrame {
     
     public void initComponents() {
 
-        JFileChooser jFileChooser1 = new JFileChooser();
-        JFileChooser jFileChooser2 = new JFileChooser();
+//        JFileChooser jFileChooser1 = new JFileChooser();
+//        JFileChooser jFileChooser2 = new JFileChooser();
         JButton jButton1 = new JButton();
         JScrollPane jScrollPane1 = new JScrollPane();
-       // JTextArea inputField = new JTextArea();
         JScrollPane jScrollPane2 = new JScrollPane();
-       // JTextArea outputField = new JTextArea();
         Button button1 = new Button();
         JButton jButton2 = new JButton();
         JMenuBar jMenuBar1 = new JMenuBar();
@@ -109,33 +109,35 @@ public class Form extends JFrame {
         );
         pack();
     }                      
-    public void jButton1ActionPerformed(ActionEvent evt) {                                         
+    public void jButton1ActionPerformed(ActionEvent evt) { 
         inputString = inputField.getText();
         General();
-        outputField.setText(outputString);
+        outputField.setText(text+outputString);
     }                                        
     
     private void jMenuItem1ActionPerformed(ActionEvent evt) {                                           
         JFileChooser fc = new JFileChooser();
         fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);  
-        fc.showSaveDialog(null);
+        int temp = fc.showSaveDialog(null);
+        
         String path = fc.getSelectedFile().getAbsolutePath();
 
         try(FileWriter writer = new FileWriter(path, false)){
-            String text = "<xsl:stylesheet version=\"1.0\" xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\"> \r\n";
             writer.write(text);
             writer.write(outputString);
             writer.flush();
         } catch(IOException ex){ 
             Logger.getLogger(Form.class.getName()).log(Level.SEVERE, "Ошибка при записи", ex);
        }
+        
+        
+        if(temp == JFileChooser.APPROVE_OPTION){
+            JOptionPane.showMessageDialog(fc, "Файл сохранён");
+        }
+        
     }  
     
     private void jMenuItem2ActionPerformed(ActionEvent evt) {                                           
         dispose();
     } 
-    
-    public static String inputString;
-    public static String outputString; 
-
 }

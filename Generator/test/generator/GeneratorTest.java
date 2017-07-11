@@ -37,21 +37,20 @@ public class GeneratorTest {
     public void tearDown() {
     }
 
-//    @Test
-//    public void testGeneral() {
-//        System.out.println("General");
-//        Generator.General();
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-
-
     @Test
     public void testReadLine() {
-        System.out.println("readLine");
+        System.out.println("    readLine");
         String text = "code,code";
         String[] expResult = {"code","code"};
         String[] result = Generator.readLine(text);
+        assertArrayEquals(expResult, result);
+    }
+    @Test
+    public void testReadWriteLine() {
+        System.out.println("    readWriteLine");
+        String text = "code"+"\n"+"code";
+        String[] expResult = {"code","code"};
+        String[] result = Generator.readWriteLine(text);
         assertArrayEquals(expResult, result);
     }
     
