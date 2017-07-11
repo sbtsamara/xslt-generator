@@ -10,6 +10,7 @@ public class Main {
                 Form frame= new Form() ;
                 frame.setVisible(true);
                 frame.setLocationRelativeTo(null);
+                frame.setResizable(false);
             }
         });
     }
