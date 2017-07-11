@@ -36,13 +36,13 @@ public class Form extends JFrame {
         JScrollPane jScrollPane1 = new JScrollPane();
         JScrollPane jScrollPane2 = new JScrollPane();
         Button button1 = new Button();
-        JButton jButton2 = new JButton();
+        //JButton jButton2 = new JButton();
         JMenuBar jMenuBar1 = new JMenuBar();
         JMenu jMenu1 = new JMenu();
         JMenuItem jMenuItem1 = new JMenuItem();
         JMenuItem jMenuItem2 = new JMenuItem();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        jButton1.setText("Создать XSLT→");
+        jButton1.setText("Создать XSLT →");
         jButton1.addActionListener(new ActionListener() {
             
             public void actionPerformed(ActionEvent evt) {
@@ -57,7 +57,7 @@ public class Form extends JFrame {
         outputField.setRows(5);
         jScrollPane2.setViewportView(outputField);
         button1.setLabel("button1");
-        jButton2.setText("jButton2");
+        //jButton2.setText("jButton2");
         jMenuBar1.setBackground(new Color(204, 204, 204));
         jMenu1.setText("File");
         jMenuItem1.setText("Сохранить");

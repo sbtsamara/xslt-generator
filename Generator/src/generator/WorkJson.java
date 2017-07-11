@@ -30,22 +30,17 @@ public class WorkJson {
             if(attribute.length == 1){
                 return operation;
             }
-            functionATT1 = (String) object.get(brackets(attribute[1]));
-            functionATT2 = (String) object.get(brackets(attribute[2]));
           
+            for (int i = 1; i < attribute.length; i++) {
+                functionATT1 = (String) object.get(brackets(attribute[i]));
+                
             if(functionATT1 == null){
-                operation = operation.replaceFirst("\\?",brackets(attribute[1]));               
+                operation = operation.replaceFirst("\\?",brackets(attribute[i]));               
             }
             else {
                 operation = operation.replaceFirst("\\?",functionATT1);
                 }   
-            
-            if(functionATT2 == null){
-                operation = operation.replaceFirst("\\?",brackets(attribute[2]));
             }
-            else{
-                operation = operation.replaceFirst("\\?",functionATT2);  
-            }  
             
         }catch (IOException | ParseException ex) {
             Logger.getLogger(WorkJson.class.getName()).log(Level.SEVERE, "Неверный путь к файлу Json", ex);
