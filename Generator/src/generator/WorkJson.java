@@ -1,7 +1,10 @@
 package generator;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.simple.JSONObject;
@@ -16,10 +19,14 @@ public class WorkJson {
         JSONParser parser = new JSONParser();
         String operation = null;
         String functionATT1 = null;
-        String functionATT2 = null;
         
         try {
-            JSONObject object = (JSONObject) parser.parse(new FileReader(FILENAME));            
+            JSONObject object = (JSONObject) parser.parse(new BufferedReader(new InputStreamReader(new FileInputStream(FILENAME), "UTF8")));      
+            
+           // BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(FILENAME), "UTF8"));
+
+            
+            
             operation = (String) object.get(attribute[0]);
             
             if (operation==null){

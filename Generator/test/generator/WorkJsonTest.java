@@ -5,19 +5,14 @@
  */
 package generator;
 
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+
+
 /**
  *
  * @author usersbt
@@ -44,9 +39,7 @@ public class WorkJsonTest {
     }
 
     @Test
-    public void testParseJson() {
-
-        
+    public void testParseJson() {       
         System.out.println("    parseJson");
         String[] attribute = {"СУММА"};
         String expResult = "sum()"; 
