@@ -71,62 +71,65 @@
 "<xsl:import href=“?”/> \r
 <xsl:apply-imports/>",
 
-"РАЗМЕР": "last()",
+"РАЗМЕР": "last(?)",
 
-"СОЗДАНИЕ_ИДЕНТИФИКАТОРА ": "generate-id() :",	
+"СОЗДАНИЕ_ИДЕНТИФИКАТОРА ": "generate-id(?) :",	
 
-"ЧИСЛ_КОНВЕРТЕР": "number()",
+"ЧИСЛ_КОНВЕРТЕР": "number(?)",
 
-"ВЕРНУТЬ_МНОЖЕСТВО": "current()",
+"ВЕРНУТЬ_МНОЖЕСТВО": "current(?)",
 
-"СУММА": "sum()",
+"СУММА": "sum(?)",
 
 "КОПИРОВАТЬ_АТРИБУТ": 
-"<xsl:copy use-attribute-sets=“ ”> 
+"<xsl:copy use-attribute-sets=“?”> 
     <xsl:value-of select=“ ”/> 
 </xsl:copy",
 
-"ЛОГ_ЗНАЧ": "boolean()",
+"ЛОГ_ЗНАЧ": "boolean(?)",
 
 "КОПИРОВАТЬ": 
-"<xsl:copy select=“ ”/>
+"<xsl:copy select=“?”/>
 <xsl:copy/>",
 
-"НЕ": "not()",
+"НЕ": "not(?)",
 
 "КОПИРОВАТЬ_ВСЕ": 
-"<xsl:copy-of select=“ ”/>
+"<xsl:copy-of select=“?”/>
 <xsl:copy/>",
 
-"ЯЗЫК": "lang()",
+"ЯЗЫК": "lang(?)",
 
-"ТЕКСТ": "<xsl:text> </xsl:text>",
+"ТЕКСТ": 
+"<xsl:text> 
+    ? \r
+</xsl:text>",
 
-"КОНКАТ": "concat()",
+"КОНКАТ": "concat(?)",
 	
-"ИМЯ": "name()",
+"ИМЯ": "name(?)",
 
-"ИМЯ_АТРИБУТА": "local-name()",
+"ИМЯ_АТРИБУТА": "local-name(?)",
 
-"ИМЯ_ПРОСТР": "namespace-uri()",
+"ИМЯ_ПРОСТР": "namespace-uri(?)",
 
-"СРАВН_НАЧАЛ": "starts-with()",
+"СРАВН_НАЧАЛ": "starts-with(?)",
 
-"ИДЕНТИФИКАТОР": "id()",
+"ИДЕНТИФИКАТОР": "id(?)",
 
-"ВХОЖДЕНИЕ_СТР": "contains()",
+"ВХОЖДЕНИЕ_СТР": "contains(?)",
 
-"КОЛИЧЕСТВО_УЗЛОВ": "count()",
+"КОЛИЧЕСТВО_УЗЛОВ": "count(?)",
 
-"ДЛИНА_СТРОКИ": "string-length()",
+"ДЛИНА_СТРОКИ": "string-length(?)",
 
-"ПОЗИЦИЯ": "position()",
+"ПОЗИЦИЯ": "position(?)",
 
-"РАЗМЕР": "last()",
+"РАЗМЕР": "last(?)",
 
-"ЗАМЕНА": "translate()",
+"ЗАМЕНА": "translate(?)",
 	
-"НОРМАЛИЗ_ПРОБЕЛОВ": "normalize-space()",
+"НОРМАЛИЗ_ПРОБЕЛОВ": "normalize-space(?)",
 
 "":""
 }
