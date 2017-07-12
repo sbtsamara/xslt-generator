@@ -2,7 +2,6 @@ package generator;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.logging.Level;
@@ -22,11 +21,6 @@ public class WorkJson {
         
         try {
             JSONObject object = (JSONObject) parser.parse(new BufferedReader(new InputStreamReader(new FileInputStream(FILENAME), "UTF8")));      
-            
-           // BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(FILENAME), "UTF8"));
-
-            
-            
             operation = (String) object.get(attribute[0]);
             
             if (operation==null){
@@ -57,6 +51,8 @@ public class WorkJson {
     
     public static String brackets(String bracket){
         String param = bracket.substring(1,bracket.length()-1);
+        param = param.replace("(","");
+        param = param.replace(")","");
         return param;
     }
 }

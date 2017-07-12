@@ -41,8 +41,8 @@ public class WorkJsonTest {
     @Test
     public void testParseJson() {       
         System.out.println("    parseJson");
-        String[] attribute = {"СУММА"};
-        String expResult = "sum()"; 
+        String[] attribute = {"СУММА","(123)"};
+        String expResult = "sum(123)"; 
         String result = WorkJson.parseJson(attribute);
         System.out.println(result);
         assertTrue(expResult.equals(result));
@@ -51,7 +51,7 @@ public class WorkJsonTest {
     @Test
     public void testbrackets() {
         System.out.println("    brackets");
-        String bracket = "(СУММА)";
+        String bracket = "((СУММА))";
         String expResult = "СУММА";     
         String result = WorkJson.brackets(bracket);
         System.out.println(result);
