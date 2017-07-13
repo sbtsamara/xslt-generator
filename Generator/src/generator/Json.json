@@ -1,34 +1,21 @@
 {
 "ЦИКЛ": 
-"<xsl:for-each select = “?” > \r
-    ? \r
+"<xsl:for-each select = “?” > ? \r
 </xsl:for-each>",
 
 "РАЗДЕЛИТЕЛЬ": 
-"<xsl:decimal-format \r
-    name = “?” \r
-    decimal-separator = “?” \r
-/>",
+"<xsl:decimal-format name = “?” decimal-separator = “?”/>",
 
 "ВЫВОД": 
-"<xsl:output \r
-    method = “?” \r
-    version = “?” \r
-    encoding = “?” \r
-/>",
+"<xsl:output method = “?” version = “?” encoding = “?”/>",
 
 "ИЗВЛЕЧЕНИЕ": "<xsl:value-of select=“?”/>",
 
 "СОРТИРОВКА": 
-"<xsl:sort \r
-    select = “?” \r
-    order = “?” \r
-/>",
+"<xsl:sort select = “?” order = “?” />",
 
 "УСЛОВИЕ": 
-"<xsl:if \r
-    test = “?”> \r
-        ? \r 
+"<xsl:if test = “?”> ? \r 
 </xsl:if>",
 
 "ВЫБОР": 

@@ -50,10 +50,15 @@ public class WorkJson {
     }
     
     public static String brackets(String bracket){
-        String param = bracket.substring(1,bracket.length()-1);
-        param = param.replace("(","");
+        //bracket.substring(1,bracket.length()-1);
+        String param = bracket.replace("(","");
         param = param.replace(")","");
         return param;
+    }
+    
+    public static String[] spChar(String bracket){
+        String[] funct = bracket.split("*");
+        return funct;
     }
 }
 

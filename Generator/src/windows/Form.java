@@ -17,7 +17,7 @@ import static javax.swing.GroupLayout.PREFERRED_SIZE;
 import static javax.swing.LayoutStyle.ComponentPlacement.RELATED;
 
 public class Form extends JFrame {
-    private String text = "<xsl:stylesheet version=\"1.0\" xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\"> \r\n\n";
+    private String text = "<xsl:stylesheet version=\"1.0\" xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\"> \r\n";
     public JTextArea inputField = new JTextArea();
     public JTextArea outputField = new JTextArea();
     public static String inputString;
@@ -30,8 +30,6 @@ public class Form extends JFrame {
     
     public void initComponents() {
 
-//        JFileChooser jFileChooser1 = new JFileChooser();
-//        JFileChooser jFileChooser2 = new JFileChooser();
         JButton jButton1 = new JButton();
         JScrollPane jScrollPane1 = new JScrollPane();
         JScrollPane jScrollPane2 = new JScrollPane();
@@ -42,7 +40,7 @@ public class Form extends JFrame {
         JMenuItem jMenuItem1 = new JMenuItem();
         JMenuItem jMenuItem2 = new JMenuItem();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        jButton1.setText("Создать XSLT →");
+        jButton1.setText("Перевести в XSL →");
         jButton1.addActionListener(new ActionListener() {
             
             public void actionPerformed(ActionEvent evt) {
@@ -57,7 +55,6 @@ public class Form extends JFrame {
         outputField.setRows(5);
         jScrollPane2.setViewportView(outputField);
         button1.setLabel("button1");
-        //jButton2.setText("jButton2");
         jMenuBar1.setBackground(new Color(204, 204, 204));
         jMenu1.setText("File");
         jMenuItem1.setText("Сохранить");

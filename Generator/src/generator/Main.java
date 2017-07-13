@@ -11,6 +11,7 @@ public class Main {
                 frame.setVisible(true);
                 frame.setLocationRelativeTo(null);
                 frame.setResizable(false);
+                frame.setTitle("XSLT-generator");
             }
         });
     }
