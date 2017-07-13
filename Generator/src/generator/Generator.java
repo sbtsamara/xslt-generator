@@ -14,7 +14,9 @@ public class Generator {
             String result = parseJson(command);
             allResult += result+"\r\n";
         }
-        Form.outputString = allResult;
+        
+
+        Form.outputString = outLine(allResult);
     }
     
     public static String[] readLine(String text){
@@ -23,7 +25,12 @@ public class Generator {
     }
     
     public static String[] readWriteLine(String text){
-        String[] cop = text.split("\n");
+        String[] cop = text.split(";\n");
         return cop;
+    }
+    
+    public static String outLine(String text){
+        String resultLine = text.replace("         ","");
+        return resultLine;
     }
 }
