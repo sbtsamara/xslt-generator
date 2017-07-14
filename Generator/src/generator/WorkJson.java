@@ -20,10 +20,14 @@ public class WorkJson {
         String operation = null;
         String functionATT1 = null;
         String resultALL = null;
+        JSONObject object = new JSONObject();
         try {
-            JSONObject object = (JSONObject) parser.parse(new BufferedReader(new InputStreamReader(new FileInputStream(FILENAME), "UTF8")));      
+            object = (JSONObject) parser.parse(new BufferedReader(new InputStreamReader(new FileInputStream(FILENAME), "UTF8")));      
             operation = (String) object.get(attribute[0]);
-            
+        }
+        catch (IOException | ParseException ex) {
+            Logger.getLogger(WorkJson.class.getName()).log(Level.SEVERE, "Неверный путь к файлу Json", ex);    
+        }   
             if (operation==null){
                 operation = "Операция не найдена. Повторите попытку.";
                 return operation;
@@ -35,21 +39,28 @@ public class WorkJson {
           
             for (int i = 1; i < attribute.length; i++) {
                 char[] functionsimv = attribute[i].toCharArray();
-                for(char funcsim:functionsimv){
-                    if(funcsim=='*'){
+                
+                //for (int j = 0; j < functionsimv.length; j++) {
+                   // char c = functionsimv[j];
+                    
+               // }
+               // for(char funcsim:functionsimv){
+                    if(functionsimv[1]=='*'){
                         attribute[i] = attribute[i].substring(2);
-                        resultALL = outLine(brackets(attribute[i]));
-                        System.out.println(resultALL);    
-                        functionATT1 = (String) object.get(resultALL); 
-                        break;
+                        resultALL = outLine(brackets(attribute[i]));    
+                        //functionATT1 = (String) object.get(resultALL); 
+                        
+                        return operation;
                     }
                     else {
                         resultALL = attribute[i]; 
-                        break;
+                        functionATT1 = (String) object.get(brackets(resultALL));
                     }
-                }
+                //}
 
-                //functionATT1 = (String) object.get(brackets(attribute[i]));
+            if(resultALL != attribute[i]){
+                //split
+            }   
                 
             if(functionATT1 == null){
                 operation = operation.replaceFirst("\\?",brackets(resultALL));               
@@ -58,10 +69,6 @@ public class WorkJson {
                 operation = operation.replaceFirst("\\?",functionATT1);
                 }   
             }
-            
-        }catch (IOException | ParseException ex) {
-            Logger.getLogger(WorkJson.class.getName()).log(Level.SEVERE, "Неверный путь к файлу Json", ex);
-        }
         return operation;
     }
     
@@ -79,6 +86,7 @@ public class WorkJson {
     
     public static String outLine(String text){
         String result = "";
+        String[] resultLin = null;
         String resultLine = "";
         char[] simv = text.toCharArray();
         for (int i = 0; i < simv.length; i++) {
@@ -90,18 +98,31 @@ public class WorkJson {
 
                     while (simv[i] != '>'){
                         resultLine += simv[i]; 
-                        
                         i++;
+
                     }
+                    resultLine += simv[i];
+                    break;
                 }
                 else {
-                    resultLine += simv[i-1]; 
-                    break;
+                    resultLine += simv[i]; 
+
                 } 
             }
-        result += resultLine+"\n\r";
-        System.out.println(result);    
-            
+        
+        
+
+        resultLin = text.split(resultLine);
+        String tempTwoLine =  resultLine.substring(1,resultLine.length());
+        tempTwoLine = "</" + tempTwoLine;
+
+        String[] tempLines = resultLin[1].split(tempTwoLine);
+
+        result = resultLine+"\n    "+tempLines[0] + "\n"+tempTwoLine;
+        System.out.println(result);
+        //System.out.println(result);
+        //String tempLine = result.concat(resultLin[0]);
+        //System.out.println(tempLine);    
 //        String[] textRes = text.split("</"+resultLine+">");
 //        String textResult = textRes[0].replace(resultLine, "");
         return result;
