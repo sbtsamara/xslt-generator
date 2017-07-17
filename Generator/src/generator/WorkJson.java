@@ -14,13 +14,18 @@ import org.json.simple.parser.ParseException;
 public class WorkJson { 
     
     private static final String FILENAME = "src\\generator\\Json.json"; 
+    public static String space = "    ";
+    public static String[] spaceX = {"","","","","","","","","","","","",""};
+    public static int i = -1;
 
+    
     public static String parseJson(String[] attribute){
         JSONParser parser = new JSONParser();
         String operation = null;
         String functionATT1 = null;
         String resultALL = null;
         JSONObject object = new JSONObject();
+        
         try {
             object = (JSONObject) parser.parse(new BufferedReader(new InputStreamReader(new FileInputStream(FILENAME), "UTF8")));      
             operation = (String) object.get(attribute[0]);
@@ -39,31 +44,22 @@ public class WorkJson {
           
             for (int i = 1; i < attribute.length; i++) {
                 char[] functionsimv = attribute[i].toCharArray();
-                
-                //for (int j = 0; j < functionsimv.length; j++) {
-                   // char c = functionsimv[j];
-                    
-               // }
-               // for(char funcsim:functionsimv){
-                    if(functionsimv[1]=='*'){
-                        attribute[i] = attribute[i].substring(2);
+
+                    if(functionsimv[1]=='<'){
                         resultALL = outLine(brackets(attribute[i]));    
-                        //functionATT1 = (String) object.get(resultALL); 
-                        
-                        return operation;
                     }
                     else {
                         resultALL = attribute[i]; 
                         functionATT1 = (String) object.get(brackets(resultALL));
                     }
-                //}
 
             if(resultALL != attribute[i]){
-                //split
+                operation = operation.replaceFirst("\\?",resultALL);
+                i++;
             }   
-                
+
             if(functionATT1 == null){
-                operation = operation.replaceFirst("\\?",brackets(resultALL));               
+                operation = operation.replaceFirst("\\?",brackets(attribute[i]));               
             }
             else {
                 operation = operation.replaceFirst("\\?",functionATT1);
@@ -73,33 +69,58 @@ public class WorkJson {
     }
     
     public static String brackets(String bracket){
-        //bracket.substring(1,bracket.length()-1);
+        while(bracket.contains("  ")) {
+            String replace = bracket.replace("  ", " ");
+            bracket=replace;
+        }
+        
         String param = bracket.replace("(","");
         param = param.replace(")","");
+        param = param.replace(";","");
         return param;
     }
-    
-    public static String[] spChar(String bracket){
-        String[] funct = bracket.split("*");
-        return funct;
+
+    public static String outLine(String text){ 
+         i++;
+        spaceX[i] = space;
+        space += "    ";
+       
+        String result = "";
+        String[] resultLin = new String[5];
+        String resultLine = readTeg(text);
+        
+        if (resultLine.equals(text)){
+            resultLin[1] = resultLine;
+        }
+        else{ 
+            resultLin = text.split(resultLine);
+        }
+        
+        String tempTwoLine =  resultLine.substring(1,resultLine.length());
+        tempTwoLine = "</" + tempTwoLine;
+        String[] tempLines = resultLin[1].split(tempTwoLine);
+        
+        if (!tempLines[0].equals(resultLin[1])){
+            result = "\n" + space + resultLine + space + space + outLine(tempLines[0]) + "\n" + spaceX[i] + tempTwoLine;
+            i--;
+        }
+        else{
+            result = "\n" + space + resultLine;
+            return result;
+        }
+        
+    return result;
     }
     
-    public static String outLine(String text){
-        String result = "";
-        String[] resultLin = null;
-        String resultLine = "";
+    public static String readTeg(String text){
         char[] simv = text.toCharArray();
+        String resultLine = "";
+   
         for (int i = 0; i < simv.length; i++) {
- //           char sim = simv[i];
-            
- //       }
- //           for (char sim:simv){
                 if(simv[i] == '<'){
-
                     while (simv[i] != '>'){
                         resultLine += simv[i]; 
                         i++;
-
                     }
                     resultLine += simv[i];
                     break;
@@ -108,30 +129,7 @@ public class WorkJson {
                     resultLine += simv[i]; 
 
                 } 
-            }
-        
-        
-
-        resultLin = text.split(resultLine);
-        String tempTwoLine =  resultLine.substring(1,resultLine.length());
-        tempTwoLine = "</" + tempTwoLine;
-
-        String[] tempLines = resultLin[1].split(tempTwoLine);
-
-        result = resultLine+"\n    "+tempLines[0] + "\n"+tempTwoLine;
-        System.out.println(result);
-        //System.out.println(result);
-        //String tempLine = result.concat(resultLin[0]);
-        //System.out.println(tempLine);    
-//        String[] textRes = text.split("</"+resultLine+">");
-//        String textResult = textRes[0].replace(resultLine, "");
-        return result;
+        }
+        return resultLine;
     }
-    
-//    public static String outLineTeg(String text){
-//        for (char sim:simv){
-//    
-//        }
-//    }
 }
-
