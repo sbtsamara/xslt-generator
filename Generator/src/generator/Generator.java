@@ -5,7 +5,7 @@ import windows.Form;
 
 public class Generator {
     public static void General(){
-        String[] command = null;
+        String[] command = null ;
         String allResult = "";
         String text = Form.inputString;
         String[] commands = readWriteLine(text);
@@ -13,7 +13,7 @@ public class Generator {
             command = readLine(i);
             String result = parseJson(command);
             allResult += result+"\r\n";
-        } 
+        }
         Form.outputString = allResult;
     }
     
