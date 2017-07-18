@@ -20,12 +20,12 @@
 
 "ВЫБОР": 
 "<xsl:choose>
-    <xsl:when test=“?”> ? \r
-    </xsl:when> \r
-    <xsl:when test=“?”> ? \r
-    </xsl:when> \r
-    <xsl:otherwise> ? \r
-    </xsl:otherwise> \r
+  <xsl:when test=“?”> ? \r
+  </xsl:when> \r
+  <xsl:when test=“?”> ? \r
+  </xsl:when> \r
+  <xsl:otherwise> ? \r
+  </xsl:otherwise> \r
 </xsl:choose>",
 
 "ПЕРЕМЕННАЯ": 

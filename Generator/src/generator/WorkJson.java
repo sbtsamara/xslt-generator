@@ -14,8 +14,8 @@ import org.json.simple.parser.ParseException;
 public class WorkJson { 
     
     private static final String FILENAME = "src\\generator\\Json.json"; 
-    public static String space = "    ";
-    public static String[] spaceX = {"","","","","","","","","","","","",""};
+    public static String space = "";
+    public static ArrayList <String> spaceX = new ArrayList();
     public static int i = -1;
 
     
@@ -46,6 +46,7 @@ public class WorkJson {
                 char[] functionsimv = attribute[i].toCharArray();
 
                     if(functionsimv[1]=='<'){
+                        
                         resultALL = outLine(brackets(attribute[i]));    
                     }
                     else {
@@ -53,7 +54,7 @@ public class WorkJson {
                         functionATT1 = (String) object.get(brackets(resultALL));
                     }
 
-            if(resultALL != attribute[i]){
+            if(!resultALL.equals(attribute[i])){
                 operation = operation.replaceFirst("\\?",resultALL);
                 i++;
             }   
@@ -73,7 +74,7 @@ public class WorkJson {
             String replace = bracket.replace("  ", " ");
             bracket=replace;
         }
-        
+
         String param = bracket.replace("(","");
         param = param.replace(")","");
         param = param.replace(";","");
@@ -81,10 +82,15 @@ public class WorkJson {
     }
 
     public static String outLine(String text){ 
-         i++;
-        spaceX[i] = space;
+        i++;
+        
+        if(spaceX.size()>i){
+            spaceX.set(i, space);
+        }else{
+            spaceX.add(space);
+        }
+        
         space += "    ";
-       
         String result = "";
         String[] resultLin = new String[5];
         String resultLine = readTeg(text);
@@ -99,17 +105,20 @@ public class WorkJson {
         String tempTwoLine =  resultLine.substring(1,resultLine.length());
         tempTwoLine = "</" + tempTwoLine;
         String[] tempLines = resultLin[1].split(tempTwoLine);
-        
+
         if (!tempLines[0].equals(resultLin[1])){
-            result = "\n" + space + resultLine + space + space + outLine(tempLines[0]) + "\n" + spaceX[i] + tempTwoLine;
+            result = "\n" + space + resultLine + space + space + outLine(tempLines[0]) + "\n" + spaceX.get(i) + tempTwoLine;
             i--;
         }
         else{
             result = "\n" + space + resultLine;
-            return result;
         }
-        
-    return result;
+                
+        if(tempLines.length>1){
+            result += outLine(tempLines[1]);
+        }
+        space = "";
+        return result;
     }
     
     public static String readTeg(String text){
@@ -127,7 +136,6 @@ public class WorkJson {
                 }
                 else {
                     resultLine += simv[i]; 
-
                 } 
         }
         return resultLine;
