@@ -1,6 +1,7 @@
 package windows;
 
 import static generator.Generator.General;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
