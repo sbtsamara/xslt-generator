@@ -43,41 +43,43 @@ public class WorkJson {
             }
           
             for (int i = 1; i < attribute.length; i++) {
+                attribute[i] = attribute[i].replace("\n","");
                 char[] functionsimv = attribute[i].toCharArray();
-
+                    
                     if(functionsimv[1]=='<'){
-                        
                         resultALL = outLine(brackets(attribute[i]));    
+                        operation = operation.replaceFirst("\\?",resultALL);
                     }
                     else {
                         resultALL = attribute[i]; 
-                        functionATT1 = (String) object.get(brackets(resultALL));
+                        functionATT1 = (String) object.get(brackets(resultALL));   
+
+                        if(functionATT1 == null){
+                            operation = operation.replaceFirst("\\?",brackets(attribute[i]));               
+                        }
+                        else {
+                            operation = operation.replaceFirst("\\?",functionATT1);
+                        }   
                     }
-
-            if(!resultALL.equals(attribute[i])){
-                operation = operation.replaceFirst("\\?",resultALL);
-                i++;
-            }   
-
-            if(functionATT1 == null){
-                operation = operation.replaceFirst("\\?",brackets(attribute[i]));               
-            }
-            else {
-                operation = operation.replaceFirst("\\?",functionATT1);
-                }   
             }
         return operation;
     }
     
     public static String brackets(String bracket){
-        while(bracket.contains("  ")) {
-            String replace = bracket.replace("  ", " ");
-            bracket=replace;
-        }
-
         String param = bracket.replace("(","");
         param = param.replace(")","");
         param = param.replace(";","");
+        
+        param = param.replace("\t","");
+        
+        while(param.contains("   ")) {
+            String replace = bracket.replace("   ", "");
+            param=replace;
+        }
+        while(param.contains("  ")) {
+            String replace = bracket.replace("  ", "");
+            param=replace;
+        }
         return param;
     }
 
@@ -93,8 +95,9 @@ public class WorkJson {
         space += "    ";
         String result = "";
         String[] resultLin = new String[5];
-        String resultLine = readTeg(text);
-        
+        String resultLine = null;
+        resultLine = readTeg(text);
+
         if (resultLine.equals(text)){
             resultLin[1] = resultLine;
         }
@@ -124,7 +127,8 @@ public class WorkJson {
     public static String readTeg(String text){
         char[] simv = text.toCharArray();
         String resultLine = "";
-   
+        
+        
         for (int i = 0; i < simv.length; i++) {
                 if(simv[i] == '<'){
                     while (simv[i] != '>'){
