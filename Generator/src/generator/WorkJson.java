@@ -17,14 +17,14 @@ public class WorkJson {
     public static String space = "";
     public static ArrayList <String> spaceX = new ArrayList();
     public static int i = -1;
-
+    public static JSONObject object = new JSONObject();
     
     public static String parseJson(String[] attribute){
         JSONParser parser = new JSONParser();
         String operation = null;
         String functionATT1 = null;
         String resultALL = null;
-        JSONObject object = new JSONObject();
+        
         
         try {
             object = (JSONObject) parser.parse(new BufferedReader(new InputStreamReader(new FileInputStream(FILENAME), "UTF8")));      
@@ -50,9 +50,8 @@ public class WorkJson {
                         resultALL = outLine(brackets(attribute[i]));    
                         operation = operation.replaceFirst("\\?",resultALL);
                     }
-                    else {
-                        resultALL = attribute[i]; 
-                        functionATT1 = (String) object.get(brackets(resultALL));   
+                    else { 
+                        functionATT1 = (String) object.get(brackets(attribute[i]));   
 
                         if(functionATT1 == null){
                             operation = operation.replaceFirst("\\?",brackets(attribute[i]));               
@@ -61,7 +60,8 @@ public class WorkJson {
                             operation = operation.replaceFirst("\\?",functionATT1);
                         }   
                     }
-            }
+                
+            }  
         return operation;
     }
     
@@ -96,10 +96,15 @@ public class WorkJson {
         String result = "";
         String[] resultLin = new String[5];
         String resultLine = null;
+        
         resultLine = readTeg(text);
 
         if (resultLine.equals(text)){
-            resultLin[1] = resultLine;
+            String functionATT = (String) object.get(brackets(resultLine));
+            if (functionATT!=null){
+                result = "\n" + space + functionATT;
+                return result;
+            } else resultLin[1] = resultLine;
         }
         else{ 
             resultLin = text.split(resultLine);
@@ -118,6 +123,7 @@ public class WorkJson {
         }
                 
         if(tempLines.length>1){
+            space = "";
             result += outLine(tempLines[1]);
         }
         space = "";

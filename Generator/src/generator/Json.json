@@ -37,7 +37,7 @@
 </xsl:template>",
 
 "АТРИБУТ": 
-"<xsl:attribute name = “?”> \r
+"<xsl:attribute name = “?”> ? \r
 </xsl:attribute>",
 
 "ВЫЗОВ_ШАБЛОНА": 
@@ -60,7 +60,7 @@
 
 "КОПИРОВАТЬ_АТРИБУТ": 
 "<xsl:copy use-attribute-sets=“?”> 
-    <xsl:value-of select=“ ”/> 
+    <xsl:value-of select=“?”/> 
 </xsl:copy",
 
 "ЛОГ_ЗНАЧ": "boolean(?)",
