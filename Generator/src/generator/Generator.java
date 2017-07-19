@@ -12,7 +12,7 @@ public class Generator {
         for (String i:commands){
             command = readLine(i);
             String result = parseJson(command);
-            allResult += "\n" + result;
+            allResult += result;
         }
         Form.outputString = allResult;
     }
