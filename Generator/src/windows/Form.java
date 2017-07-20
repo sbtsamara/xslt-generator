@@ -1,7 +1,6 @@
 package windows;
 
 import static generator.Generator.General;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -27,23 +26,21 @@ public class Form extends JFrame {
     public Form() {
         initComponents();
     } 
+    
     @SuppressWarnings("unchecked")
     
     public void initComponents() {
-
         JButton jButton1 = new JButton();
         JScrollPane jScrollPane1 = new JScrollPane();
         JScrollPane jScrollPane2 = new JScrollPane();
         Button button1 = new Button();
-        //JButton jButton2 = new JButton();
         JMenuBar jMenuBar1 = new JMenuBar();
         JMenu jMenu1 = new JMenu();
         JMenuItem jMenuItem1 = new JMenuItem();
         JMenuItem jMenuItem2 = new JMenuItem();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         jButton1.setText("Перевести в XSL →");
-        jButton1.addActionListener(new ActionListener() {
-            
+        jButton1.addActionListener(new ActionListener() {  
             public void actionPerformed(ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
@@ -65,6 +62,7 @@ public class Form extends JFrame {
                 jMenuItem1ActionPerformed(evt);
             }
         });
+        
         jMenu1.add(jMenuItem1);
         jMenuItem2.setText("Выход");
         jMenuItem2.addActionListener(new ActionListener() {
@@ -73,6 +71,7 @@ public class Form extends JFrame {
                 jMenuItem2ActionPerformed(evt);
             }
         });
+        
         jMenu1.add(jMenuItem2);
         jMenuBar1.add(jMenu1);
         setJMenuBar(jMenuBar1);

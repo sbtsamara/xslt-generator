@@ -15,71 +15,60 @@ public class WorkJson {
     
     private static final String FILENAME = "src\\generator\\Json.json"; 
     public static String space = "";
-    public static ArrayList <String> spaceX = new ArrayList();
-    public static int i = -1;
+    public static ArrayList <String> spaceList = new ArrayList();
+    public static int spaceAmound = -1;
     public static JSONObject object = new JSONObject();
     
     public static String parseJson(String[] attribute){
         JSONParser parser = new JSONParser();
-        String operation = null;
-        String functionATT1 = null;
-        String resultALL = null;
+        String construction = null;
+        String function = null;
+        String tegs = null;
         
         try {
             object = (JSONObject) parser.parse(new BufferedReader(new InputStreamReader(new FileInputStream(FILENAME), "UTF8")));      
-            operation = (String) object.get(attribute[0]);
+            construction = (String) object.get(attribute[0]);
         }
         catch (IOException | ParseException ex) {
             Logger.getLogger(WorkJson.class.getName()).log(Level.SEVERE, "Неверный путь к файлу Json", ex);    
         }   
-            if (operation==null){
-                operation = "Операция не найдена. Повторите попытку.";
-                return operation;
+            if (construction==null){
+                construction = "Операция не найдена. Повторите попытку.";
+                return construction;
             }
             
             if(attribute.length == 1){
-                operation = operation.replace("?","");
-                return operation;
+                construction = construction.replace("?","");
+                return construction;
             }
             for (int i = 1; i < attribute.length; i++) {
-                //if(!attribute[i].equals("()")){
                     attribute[i] = attribute[i].replace("\n","");
-                    char[] functionsimv = attribute[i].toCharArray();
+                    char[] charsFunction = attribute[i].toCharArray();
 
-                    if(functionsimv[1]=='<'){
-                        resultALL = outLineTeg(brackets(attribute[i]));    
-                        operation = operation.replaceFirst("\\?", resultALL);
+                    if(charsFunction[1]=='<'){
+                        tegs = findTegs(checkFormat(attribute[i]));    
+                        construction = construction.replaceFirst("\\?", tegs);
                     }
                     else { 
-                        functionATT1 = (String) object.get(brackets(attribute[i]));   
+                        function = (String) object.get(checkFormat(attribute[i]));   
 
-                        if(functionATT1 == null){
-                            operation = operation.replaceFirst("\\?", brackets(attribute[i]));               
+                        if(function == null){
+                            construction = construction.replaceFirst("\\?", checkFormat(attribute[i]));               
                         }
                         else {
-                            operation = operation.replaceFirst("\\?", functionATT1);
+                            construction = construction.replaceFirst("\\?", function);
                         }   
                     }
-//                }else{
-//                    
-//                    String[] str = operation.split("\n");
-//                    operation="";
-//                    for (int j = 0; j < str.length; j++) {
-//                        if(!(str[j].length()==5 && str[j].contains("?"))){
-//                            operation = operation + str[j] + "\n";
-//                        }
-//                    }
-                //}
-            }  
-        operation = outLine(operation);
-        return operation;
+            } 
+            
+        construction = outLine(construction);
+        return construction;
     }
     
     public static String outLine(String text){
         String[] str = text.split("\n");
         text ="";
         for (int j = 0; j < str.length; j++) {
-            System.out.println(str[j].length());
             if(!(str[j].length()==4 && str[j].contains("    "))){
                 text = text + str[j] + "\n";
             }
@@ -100,11 +89,12 @@ public class WorkJson {
                 t++;
             }
             text = text.replace(rem,"");
+            text = text.replace("    ?","");
         }
         return text;
     }
     
-    public static String brackets(String bracket){
+    public static String checkFormat(String bracket){
         String param = bracket.replace("(","");
         param = param.replace(")","");
         param = param.replace(";","");
@@ -121,71 +111,71 @@ public class WorkJson {
         return param;
     }
     
-    public static String outLineTeg(String text){ 
-        i++;
+    public static String findTegs(String text){ 
+        spaceAmound++;
         
-        if(spaceX.size()>i){
-            spaceX.set(i, space);
+        if(spaceList.size()>spaceAmound){
+            spaceList.set(spaceAmound, space);
         }else{
-            spaceX.add(space);
+            spaceList.add(space);
         }
         
         space += "    ";
-        String result = "";
-        String[] resultLin = new String[5];
-        String resultLine = null;
+        String StrTegs = "";
+        String[] StrWithoutOpeningTeg = new String[5];
+        String openTeg = null;
         
-        resultLine = readTeg(text);
+        openTeg = readTeg(text);
 
-        if (resultLine.equals(text)){
-            String functionATT = (String) object.get(brackets(resultLine));
-            if (functionATT!=null){
-                result = "\n" + space + functionATT;
-                return result;
-            } else resultLin[1] = resultLine;
+        if (openTeg.equals(text)){
+            String functionInTeg = (String) object.get(checkFormat(openTeg));
+            if (functionInTeg!=null){
+                StrTegs = "\n" + space + functionInTeg;
+                return StrTegs;
+            } else StrWithoutOpeningTeg[1] = openTeg;
         }
         else{ 
-            resultLin = text.split(resultLine);
+            StrWithoutOpeningTeg = text.split(openTeg);
         }
         
-        String tempTwoLine =  resultLine.substring(1,resultLine.length());
-        tempTwoLine = "</" + tempTwoLine;
-        String[] tempLines = resultLin[1].split(tempTwoLine);
+        String closeTeg =  openTeg.substring(1,openTeg.length());
+        closeTeg = "</" + closeTeg;
+        String[] ContentTegs = StrWithoutOpeningTeg[1].split(closeTeg);
 
-        if (!tempLines[0].equals(resultLin[1])){
-            result = "\n" + space + resultLine + space + space + outLine(tempLines[0]) + "\n" + spaceX.get(i) + tempTwoLine;
-            i--;
+        if (!ContentTegs[0].equals(StrWithoutOpeningTeg[1])){
+            StrTegs = "\n" + space + openTeg + space + space + outLine(ContentTegs[0]) + "\n" + spaceList.get(spaceAmound) + closeTeg;
+            spaceAmound--;
         }
         else{
-            result = "\n" + space + resultLine;
+            StrTegs = "\n" + space + openTeg;
         }
                 
-        if(tempLines.length>1){
+        if(ContentTegs.length>1){
             space = "";
-            result += outLine(tempLines[1]);
+            StrTegs += outLine(ContentTegs[1]);
         }
         space = "";
-        return result;
+        return StrTegs;
     }
     
     public static String readTeg(String text){
-        char[] simv = text.toCharArray();
-        String resultLine = "";
+        char[] charsTegs = text.toCharArray();
+        String openTeg = "";
         
         
-        for (int i = 0; i < simv.length; i++) {
-                if(simv[i] == '<'){
-                    while (simv[i] != '>'){
-                        resultLine += simv[i]; 
+        for (int i = 0; i < charsTegs.length; i++) {
+                if(charsTegs[i] == '<'){
+                    while (charsTegs[i] != '>'){
+                        openTeg += charsTegs[i]; 
                         i++;
                     }
-                    resultLine += simv[i];
+                    openTeg += charsTegs[i];
                     break;
                 }
                 else {
-                    resultLine += simv[i]; 
+                    openTeg += charsTegs[i]; 
                 } 
         }
-        return resultLine;
+        return openTeg;
     }
 }

@@ -50,7 +50,7 @@ public class GeneratorTest {
         System.out.println("    readWriteLine");
         String text = "code"+";\n"+"code";
         String[] expResult = {"code","code"};
-        String[] result = Generator.readWriteLine(text);
+        String[] result = Generator.readWriteLines(text);
         assertArrayEquals(expResult, result);
     }
     

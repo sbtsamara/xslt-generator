@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Ignore;
 
 
 /**
@@ -37,15 +38,15 @@ public class WorkJsonTest {
     @After
     public void tearDown() {
     }
-
+    
     @Test
     public void testParseJson() {       
         System.out.println("    parseJson");
         String[] attribute = {"СУММА","(123)"};
-        String expResult = "sum(123)"; 
+        String expResult = "sum(123)\n"; 
         String result = WorkJson.parseJson(attribute);
         System.out.println(result);
-        assertTrue(expResult.equals(result));
+        assertEquals(expResult, result); //assertTrue(expResult.equals(result));
     }
     
     @Test
@@ -53,7 +54,7 @@ public class WorkJsonTest {
         System.out.println("    brackets");
         String bracket = "((СУММА))";
         String expResult = "СУММА";     
-        String result = WorkJson.brackets(bracket);
+        String result = WorkJson.checkFormat(bracket);
         System.out.println(result);
         assertEquals(expResult, result);   
     }
