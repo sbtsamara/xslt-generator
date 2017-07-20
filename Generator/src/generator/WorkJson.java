@@ -42,30 +42,50 @@ public class WorkJson {
                 return operation;
             }
             for (int i = 1; i < attribute.length; i++) {
-                attribute[i] = attribute[i].replace("\n","");
-                char[] functionsimv = attribute[i].toCharArray();
-                    
-                if(functionsimv[1]=='<'){
-                    resultALL = outLineTeg(brackets(attribute[i]));    
-                    operation = operation.replaceFirst("\\?", resultALL);
-                }
-                else { 
-                    functionATT1 = (String) object.get(brackets(attribute[i]));   
+                //if(!attribute[i].equals("()")){
+                    attribute[i] = attribute[i].replace("\n","");
+                    char[] functionsimv = attribute[i].toCharArray();
 
-                    if(functionATT1 == null){
-                        operation = operation.replaceFirst("\\?", brackets(attribute[i]));               
+                    if(functionsimv[1]=='<'){
+                        resultALL = outLineTeg(brackets(attribute[i]));    
+                        operation = operation.replaceFirst("\\?", resultALL);
                     }
-                    else {
-                        operation = operation.replaceFirst("\\?", functionATT1);
-                    }   
-                }
+                    else { 
+                        functionATT1 = (String) object.get(brackets(attribute[i]));   
+
+                        if(functionATT1 == null){
+                            operation = operation.replaceFirst("\\?", brackets(attribute[i]));               
+                        }
+                        else {
+                            operation = operation.replaceFirst("\\?", functionATT1);
+                        }   
+                    }
+//                }else{
+//                    
+//                    String[] str = operation.split("\n");
+//                    operation="";
+//                    for (int j = 0; j < str.length; j++) {
+//                        if(!(str[j].length()==5 && str[j].contains("?"))){
+//                            operation = operation + str[j] + "\n";
+//                        }
+//                    }
+                //}
             }  
         operation = outLine(operation);
         return operation;
     }
     
     public static String outLine(String text){
-                while (text.contains("“”")){
+        String[] str = text.split("\n");
+        text ="";
+        for (int j = 0; j < str.length; j++) {
+            System.out.println(str[j].length());
+            if(!(str[j].length()==4 && str[j].contains("    "))){
+                text = text + str[j] + "\n";
+            }
+            
+        }
+        while (text.contains("“”")){
             String rem = "";
             int t = text.indexOf("“”");          
             char[] oper = text.toCharArray();
