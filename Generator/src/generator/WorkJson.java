@@ -17,14 +17,13 @@ public class WorkJson {
     public static String space = "";
     public static ArrayList <String> spaceX = new ArrayList();
     public static int i = -1;
-
+    public static JSONObject object = new JSONObject();
     
     public static String parseJson(String[] attribute){
         JSONParser parser = new JSONParser();
         String operation = null;
         String functionATT1 = null;
         String resultALL = null;
-        JSONObject object = new JSONObject();
         
         try {
             object = (JSONObject) parser.parse(new BufferedReader(new InputStreamReader(new FileInputStream(FILENAME), "UTF8")));      
@@ -39,49 +38,90 @@ public class WorkJson {
             }
             
             if(attribute.length == 1){
+                operation = operation.replace("?","");
                 return operation;
             }
-          
             for (int i = 1; i < attribute.length; i++) {
-                char[] functionsimv = attribute[i].toCharArray();
+                //if(!attribute[i].equals("()")){
+                    attribute[i] = attribute[i].replace("\n","");
+                    char[] functionsimv = attribute[i].toCharArray();
 
                     if(functionsimv[1]=='<'){
-                        
-                        resultALL = outLine(brackets(attribute[i]));    
+                        resultALL = outLineTeg(brackets(attribute[i]));    
+                        operation = operation.replaceFirst("\\?", resultALL);
                     }
-                    else {
-                        resultALL = attribute[i]; 
-                        functionATT1 = (String) object.get(brackets(resultALL));
+                    else { 
+                        functionATT1 = (String) object.get(brackets(attribute[i]));   
+
+                        if(functionATT1 == null){
+                            operation = operation.replaceFirst("\\?", brackets(attribute[i]));               
+                        }
+                        else {
+                            operation = operation.replaceFirst("\\?", functionATT1);
+                        }   
                     }
-
-            if(!resultALL.equals(attribute[i])){
-                operation = operation.replaceFirst("\\?",resultALL);
-                i++;
-            }   
-
-            if(functionATT1 == null){
-                operation = operation.replaceFirst("\\?",brackets(attribute[i]));               
-            }
-            else {
-                operation = operation.replaceFirst("\\?",functionATT1);
-                }   
-            }
+//                }else{
+//                    
+//                    String[] str = operation.split("\n");
+//                    operation="";
+//                    for (int j = 0; j < str.length; j++) {
+//                        if(!(str[j].length()==5 && str[j].contains("?"))){
+//                            operation = operation + str[j] + "\n";
+//                        }
+//                    }
+                //}
+            }  
+        operation = outLine(operation);
         return operation;
     }
     
-    public static String brackets(String bracket){
-        while(bracket.contains("  ")) {
-            String replace = bracket.replace("  ", " ");
-            bracket=replace;
+    public static String outLine(String text){
+        String[] str = text.split("\n");
+        text ="";
+        for (int j = 0; j < str.length; j++) {
+            System.out.println(str[j].length());
+            if(!(str[j].length()==4 && str[j].contains("    "))){
+                text = text + str[j] + "\n";
+            }
+            
         }
-
+        while (text.contains("“”")){
+            String rem = "";
+            int t = text.indexOf("“”");          
+            char[] oper = text.toCharArray();
+            
+            while(oper[t] != ' '){
+                t--;
+            }  
+            t++;
+            
+            while(oper[t] != ' '){
+                rem += oper[t];
+                t++;
+            }
+            text = text.replace(rem,"");
+        }
+        return text;
+    }
+    
+    public static String brackets(String bracket){
         String param = bracket.replace("(","");
         param = param.replace(")","");
         param = param.replace(";","");
+        param = param.replace("\t","");
+        
+        while(param.contains("   ")) {
+            String replace = param.replace("   ", "");
+            param=replace;
+        }
+        while(param.contains("  ")) {
+            String replace = param.replace("  ", "");
+            param=replace;
+        }
         return param;
     }
-
-    public static String outLine(String text){ 
+    
+    public static String outLineTeg(String text){ 
         i++;
         
         if(spaceX.size()>i){
@@ -93,10 +133,16 @@ public class WorkJson {
         space += "    ";
         String result = "";
         String[] resultLin = new String[5];
-        String resultLine = readTeg(text);
+        String resultLine = null;
         
+        resultLine = readTeg(text);
+
         if (resultLine.equals(text)){
-            resultLin[1] = resultLine;
+            String functionATT = (String) object.get(brackets(resultLine));
+            if (functionATT!=null){
+                result = "\n" + space + functionATT;
+                return result;
+            } else resultLin[1] = resultLine;
         }
         else{ 
             resultLin = text.split(resultLine);
@@ -115,6 +161,7 @@ public class WorkJson {
         }
                 
         if(tempLines.length>1){
+            space = "";
             result += outLine(tempLines[1]);
         }
         space = "";
@@ -124,7 +171,8 @@ public class WorkJson {
     public static String readTeg(String text){
         char[] simv = text.toCharArray();
         String resultLine = "";
-   
+        
+        
         for (int i = 0; i < simv.length; i++) {
                 if(simv[i] == '<'){
                     while (simv[i] != '>'){

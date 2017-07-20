@@ -1,51 +1,58 @@
 {
 "ЦИКЛ": 
-"<xsl:for-each select = “?” > ? \r
+"<xsl:for-each select=“?” >
+    ?
 </xsl:for-each>",
 
 "РАЗДЕЛИТЕЛЬ": 
-"<xsl:decimal-format name = “?” decimal-separator = “?”/>",
+"<xsl:decimal-format name=“?” decimal-separator=“?” />",
 
 "ВЫВОД": 
-"<xsl:output method = “?” version = “?” encoding = “?”/>",
+"<xsl:output method=“?” version=“?” encoding=“?” />",
 
-"ИЗВЛЕЧЕНИЕ": "<xsl:value-of select=“?”/>",
+"ИЗВЛЕЧЕНИЕ": "<xsl:value-of select=“?” />",
 
 "СОРТИРОВКА": 
-"<xsl:sort select = “?” order = “?” />",
+"<xsl:sort select=“?” order=“?” />",
 
 "УСЛОВИЕ": 
-"<xsl:if test = “?”> ? \r 
+"<xsl:if test=“?” >
+    ?
 </xsl:if>",
 
 "ВЫБОР": 
 "<xsl:choose>
-  <xsl:when test=“?”> ? \r
-  </xsl:when> \r
-  <xsl:when test=“?”> ? \r
-  </xsl:when> \r
-  <xsl:otherwise> ? \r
-  </xsl:otherwise> \r
+  <xsl:when test=“?” > 
+    ? 
+  </xsl:when>
+  <xsl:when test=“?” > 
+    ?
+  </xsl:when>
+  <xsl:otherwise>
+    ?
+  </xsl:otherwise>
 </xsl:choose>",
 
 "ПЕРЕМЕННАЯ": 
-"<xsl:variable name = “?” select = “?”> \r
+"<xsl:variable name=“?” select=“?”>
 </xsl:variable>",
 
 "ШАБЛОН": 
-"<xsl:template match = “?” name = “?” ? \r
+"<xsl:template match=“?” name=“?” 
+    ?
 </xsl:template>",
 
 "АТРИБУТ": 
-"<xsl:attribute name = “?”> \r
+"<xsl:attribute name=“?”> 
+    ?
 </xsl:attribute>",
 
 "ВЫЗОВ_ШАБЛОНА": 
-"<xsl:apply-templates select = “?” \r 
+"<xsl:apply-templates select=“?” 
 </xsl:apply-templates>",
 
 "ИМПОРТ_ШАБЛОНА": 
-"<xsl:import href=“?”/> \r
+"<xsl:import href=“?” />
 <xsl:apply-imports/>",
 
 "РАЗМЕР": "last(?)",
@@ -59,26 +66,27 @@
 "СУММА": "sum(?)",
 
 "КОПИРОВАТЬ_АТРИБУТ": 
-"<xsl:copy use-attribute-sets=“?”> 
-    <xsl:value-of select=“ ”/> 
+"<xsl:copy use-attribute-sets=“?” >
+    <xsl:value-of select=“?” />
 </xsl:copy",
 
 "ЛОГ_ЗНАЧ": "boolean(?)",
 
 "КОПИРОВАТЬ": 
-"<xsl:copy select=“?”/>
+"<xsl:copy select=“?” />
 <xsl:copy/>",
 
 "НЕ": "not(?)",
 
 "КОПИРОВАТЬ_ВСЕ": 
-"<xsl:copy-of select=“?”/>
+"<xsl:copy-of select=“?” />
 <xsl:copy/>",
 
 "ЯЗЫК": "lang(?)",
 
 "ТЕКСТ": 
-"<xsl:text> ? \r
+"<xsl:text>
+    ?
 </xsl:text>",
 
 "КОНКАТ": "concat(?)",
